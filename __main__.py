@@ -1,4 +1,5 @@
-from pywinauto import Desktop
+"""
+__main__.py
 
-windows = Desktop(backend="uia").windows()
-print([w.window_text() for w in windows])
+script entrypoint
+"""
