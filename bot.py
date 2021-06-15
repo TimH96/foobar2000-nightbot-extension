@@ -7,18 +7,30 @@ from threading                      import Event
 from pywinauto.controls.uiawrapper  import UIAWrapper
 
 
+class NoReplaceTokenFoundError(Exception):
+    """Error thrown when no replace token in output string"""
+    pass
+
+
 class WindowTerminatedError(Exception):
-    """Error thrown by bot when window is terminated"""
+    """Error throw when window is terminated"""
     pass
 
 
 class FoobarExtensionBot():
     """Bot polling a given window and posting its content to Nightbot API"""
 
+    REPLACE_TOKEN : str = 'TODO'
+
     def __init__(self, config: BotConfig) -> None:
         self.config  : BotConfig  = config
         self.stopped : Event      = Event()
         self.cur_out : str        = ''
+
+    @classmethod
+    def process_output_str(cls, base: str, rep: str) -> str:
+        """Replaces TOKEN TODO in base with rep"""
+        return  # TODO
 
     def run(self, window: UIAWrapper) -> None:
         """Run bot with a given window handle"""
@@ -33,7 +45,7 @@ class FoobarExtensionBot():
         del self.window
 
     def post_to_nightbot(self, data: str) -> None:
-        """Process a given data string to output format and post it to configured API"""
+        """Post a given string to configured API"""
         pass  # TODO
 
     def _main_loop(self) -> None:
@@ -43,4 +55,4 @@ class FoobarExtensionBot():
             raise WindowTerminatedError
         if o != self.cur_out:
             self.cur_out = o
-            self.post_to_nightbot(o)
+            self.post_to_nightbot(FoobarExtensionBot.process_output_str(self.config.outtext, o))
