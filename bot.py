@@ -18,16 +18,16 @@ class FoobarExtensionBot():
     def run(self, window: UIAWrapper) -> None:
         """Run bot with a given window handle"""
         self.window : UIAWrapper = window
-        self.stopped.clear()        
+        self.stopped.clear()
         while not self.stopped.wait(2):
             self._main_loop()
-        
+
     def stop(self) -> None:
-        """Stops thread"""
+        """Stops bot"""
         self.stopped.set()
+        del self.window
 
     def _main_loop(self) -> None:
-        """Private run main loop"""
+        """Private main loop wrapper"""
         print('oiiii')
         print(self.stopped.is_set(), self.stopped)
-        
