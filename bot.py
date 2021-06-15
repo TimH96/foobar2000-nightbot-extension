@@ -2,7 +2,7 @@
 bot.py
 """
 
-from config                         import BotConfig
+from config                         import ExtensionConfig
 from threading                      import Event
 from pywinauto.controls.uiawrapper  import UIAWrapper
 
@@ -22,10 +22,10 @@ class FoobarExtensionBot():
 
     REPLACE_TOKEN : str = 'TODO'
 
-    def __init__(self, config: BotConfig) -> None:
-        self.config  : BotConfig  = config
-        self.stopped : Event      = Event()
-        self.cur_out : str        = ''
+    def __init__(self, config: ExtensionConfig) -> None:
+        self.config  : ExtensionConfig = config
+        self.stopped : Event = Event()
+        self.cur_out : str   = ''
 
     @classmethod
     def process_output_str(cls, base: str, rep: str) -> str:

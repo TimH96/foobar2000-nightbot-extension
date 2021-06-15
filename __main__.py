@@ -6,9 +6,9 @@ script entrypoint
 
 from argparse import ArgumentParser
 from bot import FoobarExtensionBot, WindowTerminatedError
-from config import BotConfig
+from config import ExtensionConfig
 
-c = BotConfig(**{
+c = ExtensionConfig(**{
             'api' : {
                 'key'    : '',
                 'cmd_id' : 1
