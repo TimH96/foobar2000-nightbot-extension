@@ -26,7 +26,7 @@ class BotConfig:
         return {
             'api' : {
                 'key'    : self.api.key,
-                'cmd_id' : self.api.command_id
+                'cmd_id' : self.api.cmd_id
             },
             'interval' : self.interval,
             'outtext'  : self.outtext
