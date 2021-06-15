@@ -4,23 +4,45 @@ __main__.py
 script entrypoint
 """
 
+
+
 from argparse import ArgumentParser
 from bot import FoobarExtensionBot, WindowTerminatedError
 from config import ExtensionConfig
+from pywinauto                      import Desktop
+from pywinauto.controls.uiawrapper  import UIAWrapper
 
+def _exit():
+    """Controlled script exit"""
+    input('Press ENTER to exit')
+    exit()
+"""
+desk = Desktop(backend="uia")
+win = desk.windows()
+for i, w in enumerate(win):
+    print(i, w.window_text())
+
+i = int(input())
+w : UIAWrapper = win[i]
+"""
 c = ExtensionConfig(**{
             'api' : {
-                'key'    : '',
-                'cmd_id' : 1
+                'client_id':'test',
+                'client_secret':'test',
+                'cmd_id' : '1'
             },
             'interval' : 3,
-            'outtext'  : ''
+            'outtext'  : r'Currently Playing: %window%'
         })
 
-b = FoobarExtensionBot(c)
+b = FoobarExtensionBot(c)#
+bla = b.get_custom_commands()
+for i in bla:
+    print(i.command_name, i.id)
+
 
 try:
-    b.run()
+    pass#b.run(w)
 except KeyboardInterrupt:
     b.stop()
 except WindowTerminatedError:
@@ -38,27 +60,4 @@ except WindowTerminatedError:
 # create and run bot with config
 
 
-"""
 
-from pywinauto                      import Desktop
-from pywinauto.controls.uiawrapper  import UIAWrapper
-
-desk = Desktop(backend="uia")
-win = desk.windows()
-for i, w in enumerate(win):
-    print(i, w.window_text())
-
-i = int(input())
-b : UIAWrapper = win[i]
-
-
-
-def get_desktop(backend: str = 'uia') -> Desktop:
-    return Desktop(backend=backend)
-
-
-while True:
-    print(b.process_id())  # process id goes None when gone
-    print(b.window_text())
-    print(b.handle)
-"""
