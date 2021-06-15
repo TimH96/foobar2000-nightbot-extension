@@ -4,10 +4,12 @@ __main__.py
 script entrypoint
 """
 
+# parse config
+
 # build desktop object
 
 # get all windows
 
 # let user pick window
 
-# iterate over its window and post to api whenever it changes
+# create and run bot with config
