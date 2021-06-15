@@ -7,6 +7,11 @@ from threading                      import Event
 from pywinauto.controls.uiawrapper  import UIAWrapper
 
 
+class WindowTerminatedError(Exception):
+    """Error thrown by bot when window is terminated"""
+    pass
+
+
 class FoobarExtensionBot():
     """Bot polling a given window and posting its content to Nightbot API"""
 
@@ -19,7 +24,7 @@ class FoobarExtensionBot():
         """Run bot with a given window handle"""
         self.window : UIAWrapper = window
         self.stopped.clear()
-        while not self.stopped.wait(2):
+        while not self.stopped.wait(self.config.interval):
             self._main_loop()
 
     def stop(self) -> None:
@@ -29,5 +34,9 @@ class FoobarExtensionBot():
 
     def _main_loop(self) -> None:
         """Private main loop wrapper"""
-        print('oiiii')
-        print(self.stopped.is_set(), self.stopped)
+        o : str = self.window.window_text()
+        if self.window.process_id() is None:
+            raise WindowTerminatedError
+        if o != self.cur_out:
+            self.cur_out = o
+            pass  # TODO post to nightbot api
