@@ -13,7 +13,7 @@ class NightbotConfig:
         self.cmd_id : int = cmd_id
 
 
-class BotConfig:
+class ExtensionConfig:
     """Bot config interface"""
 
     def __init__(self, *, interval: int, outtext: str, api: dict) -> None:
