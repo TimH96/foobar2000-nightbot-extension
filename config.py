@@ -8,9 +8,9 @@ bot config
 class NightbotConfig:
     """Nightbot config interface"""
 
-    def __init__(self, *, api_key: str, command_id: int) -> None:
-        self.key    : str = api_key
-        self.cmd_id : int = command_id
+    def __init__(self, *, key: str, cmd_id: int) -> None:
+        self.key    : str = key
+        self.cmd_id : int = cmd_id
 
 
 class BotConfig:
