@@ -5,7 +5,7 @@ script entrypoint
 """
 
 from argparse import ArgumentParser
-from bot import FoobarExtensionBot
+from bot import FoobarExtensionBot, WindowTerminatedError
 from config import BotConfig
 
 c = BotConfig(**{
@@ -13,7 +13,7 @@ c = BotConfig(**{
                 'key'    : '',
                 'cmd_id' : 1
             },
-            'interval' : 0.5,
+            'interval' : 3,
             'outtext'  : ''
         })
 
@@ -23,7 +23,10 @@ try:
     b.run()
 except KeyboardInterrupt:
     b.stop()
-
+except WindowTerminatedError:
+    b.stop()
+    print("yo smth went wrong bro")
+    
 # parse config
 
 # build desktop object
