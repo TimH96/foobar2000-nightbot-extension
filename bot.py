@@ -32,6 +32,10 @@ class FoobarExtensionBot():
         self.stopped.set()
         del self.window
 
+    def post_to_nightbot(self, data: str) -> None:
+        """Process a given data string to output format and post it to configured API"""
+        pass  # TODO
+
     def _main_loop(self) -> None:
         """Private main loop wrapper"""
         o : str = self.window.window_text()
@@ -39,4 +43,4 @@ class FoobarExtensionBot():
             raise WindowTerminatedError
         if o != self.cur_out:
             self.cur_out = o
-            pass  # TODO post to nightbot api
+            self.post_to_nightbot(o)
