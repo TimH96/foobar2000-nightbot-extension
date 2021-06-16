@@ -12,16 +12,19 @@ from config                         import ExtensionConfig
 from pywinauto                      import Desktop
 from pywinauto.controls.uiawrapper  import UIAWrapper
 
+
 def _exit() -> None:
     """Controlled script exit"""
     input('Press ENTER to exit')
     exit()
+
 
 def _prompt_choice(options: list) -> int:
     """Prompts user to pick an option from items in list, returns index"""
     for i, x in enumerate(options):
         print(str(i).rjust(3, ' '), x)
     return int(input('Selection: '))
+
 
 def _build_config() -> dict:
     """Script to build config dict from user inputs"""
@@ -48,6 +51,7 @@ def _build_config() -> dict:
     d['api']['cmd_id'] = cmd_id
     return d
 
+
 if __name__ == '__main__':
     # parse args
     parser = ArgumentParser(
@@ -56,7 +60,7 @@ if __name__ == '__main__':
     )
     parser.add_argument(
         '-p', '--path',
-        help='path to config json file, default: .\config.json',
+        help='path to config json file, default: ./config.json',
         default='./config.json'
     )
     args : Namespace = parser.parse_args()
