@@ -31,6 +31,7 @@ class FoobarExtensionBot():
 
     REPLACE_TOKEN  : str = r'%win%'
     TOKEN_ENDPOINT : str = 'https://api.nightbot.tv/oauth2/token'
+    STATIC_DEFAULT : str = 'foobar2000 extension is not running'
     STD_INTERVAL   : int = 5
 
     def __init__(self, config: ExtensionConfig) -> None:
@@ -58,6 +59,7 @@ class FoobarExtensionBot():
     def stop(self) -> None:
         """Stops bot"""
         self.stopped.set()
+        self.deinit_output()
         del self.window
 
     def _construct_api(self, config: NightbotConfig) -> None:
@@ -81,9 +83,13 @@ class FoobarExtensionBot():
         token_d  : dict    = json.loads(res.content)
         self.api : NightPy = NightPy(token_d['access_token'])
 
-    def get_custom_commands(self):
+    def get_custom_commands(self) -> list:
         """Returns list of known custom commands"""
         return self.api.get_custom_commands()
+
+    def deinit_output(self) -> None:
+        """Resets output to static text"""
+        self._post_to_nightbot(FoobarExtensionBot.STATIC_DEFAULT)
 
     def _post_to_nightbot(self, data: str) -> None:
         """Post a given string to configured API"""
