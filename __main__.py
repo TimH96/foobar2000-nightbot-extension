@@ -94,7 +94,7 @@ if __name__ == '__main__':
     # run bot
     print('----------------------')
     try:
-        print('Bot running ...')
+        print('Bot running ... CTRL+Z to stop')
         bot.run(chosen_window)
     except KeyboardInterrupt:
         bot.stop()
