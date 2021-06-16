@@ -5,7 +5,6 @@ script entrypoint
 """
 
 import json
-import inquirer
 from pathlib                        import Path
 from argparse                       import ArgumentParser, Namespace
 from bot                            import FoobarExtensionBot, WindowTerminatedError, InvalidTokenError, NoReplaceTokenFoundError
@@ -17,6 +16,12 @@ def _exit() -> None:
     """Controlled script exit"""
     input('Press ENTER to exit')
     exit()
+
+def _prompt_choice(options: list) -> int:
+    """Prompts user to pick an option from items in list, returns index"""
+    for i, x in enumerate(options):
+        print(str(i).rjust(3, ' '), x)
+    return int(input('Selection: '))
 
 def _build_config() -> dict:
     """Script to build config dict from user inputs"""
@@ -37,19 +42,10 @@ def _build_config() -> dict:
         print(f'error: there was no {FoobarExtensionBot.REPLACE_TOKEN} in your given output')
         _exit()
     # get commands and make user select
-    cmds : list = b.get_custom_commands()
-    cmd_choice : dict = inquirer.prompt(
-        [
-            inquirer.List(
-                'cmd',
-                message='Chosen command:',
-                choices=[f'{c.id} {c.command_name}' for c in cmds]
-            )
-        ]
-    )
-    id : str = cmd_choice['cmd'].split(' ')[0]
+    cmds    : list = b.get_custom_commands()
+    cmd_id  : int  = cmds[_prompt_choice([c.command_name for c in cmds])].id
     # build and return config
-    d['api']['cmd_id'] = id
+    d['api']['cmd_id'] = cmd_id
     return d
 
 if __name__ == '__main__':
@@ -72,7 +68,14 @@ if __name__ == '__main__':
         with open(args.path, 'r') as file:
             config = ExtensionConfig(**json.loads(file.read()))
         print('Loaded config.json, edit or delete file to reconfigure')
-        bot = FoobarExtensionBot(config)
+        try:
+            bot = FoobarExtensionBot(config)
+        except InvalidTokenError:
+            print('error: could not retrieve access token, credentials might be invalid')
+            _exit()
+        except NoReplaceTokenFoundError:
+            print(f'error: no replace token {FoobarExtensionBot.REPLACE_TOKEN} found in configured output')
+            _exit()
     except Exception as error:
         print(f'Could not load config.json because of the following error: {error}')
         print('You will now be prompted to configure the bot, refer to the README.md for help')
@@ -83,20 +86,11 @@ if __name__ == '__main__':
             print('Valid config, saved to file')
     # get window
     windows = Desktop(backend="uia").windows()
-    win_choice : dict = inquirer.prompt(
-        [
-            inquirer.List(
-                'win',
-                message='Chosen window:',
-                choices=[f'{i} {win.window_text()}' for i, win in enumerate(windows)]
-            )
-        ]
-    )
-    index : int = int(win_choice['win'].split(' ')[0])
-    chosen_window : UIAWrapper = windows[index]
+    chosen_window : UIAWrapper = windows[_prompt_choice([w.window_text() for w in windows])]
     # run bot
+    print('----------------------')
     try:
-        print('Bot running with give config and window')
+        print('Bot running ...')
         bot.run(chosen_window)
     except KeyboardInterrupt:
         bot.stop()
