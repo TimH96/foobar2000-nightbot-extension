@@ -26,8 +26,9 @@ class ExtensionConfig:
         """Returns dict representation of """
         return {
             'api' : {
-                'key'    : self.api.key,
-                'cmd_id' : self.api.cmd_id
+                'client_id'     : self.api.client_id,
+                'client_secret' : self.api.client_secret,
+                'cmd_id'        : self.api.cmd_id
             },
             'interval' : self.interval,
             'outtext'  : self.outtext
