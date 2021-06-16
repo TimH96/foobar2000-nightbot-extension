@@ -1,0 +1,4 @@
+inquirer module
+nightpy
+requests
+pywinauto
