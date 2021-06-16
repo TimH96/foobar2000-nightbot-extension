@@ -31,7 +31,7 @@ class FoobarExtensionBot():
 
     REPLACE_TOKEN  : str = r'%win%'
     TOKEN_ENDPOINT : str = 'https://api.nightbot.tv/oauth2/token'
-    STD_INTERVAL   : int = 2
+    STD_INTERVAL   : int = 5
 
     def __init__(self, config: ExtensionConfig) -> None:
         self.config  : ExtensionConfig = config
