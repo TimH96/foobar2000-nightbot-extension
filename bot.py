@@ -29,7 +29,7 @@ class WindowTerminatedError(Exception):
 class FoobarExtensionBot():
     """Bot polling a given window and posting its content to Nightbot API"""
 
-    REPLACE_TOKEN  : str = r'%window%'
+    REPLACE_TOKEN  : str = r'%win%'
     TOKEN_ENDPOINT : str = 'https://api.nightbot.tv/oauth2/token'
 
     def __init__(self, config: ExtensionConfig) -> None:
