@@ -17,6 +17,12 @@ Or you can simply download and run the latest executable from the [releases page
 
 #### Config
 
+The bot will need to be configured upon first execution with the following information:
+
++ ``client_id`` and ``client_secret`` are required to interact with the Nightbot API. TODO
++ ``output_text`` is the text that shows when using the command. Use ``%win%`` as a substitute for the actual information in the window title, for example ``Currently playing: %win%``. There will be an error if you don't use the ``%win%`` token in your output text.
++ ``cmd_id`` is which command to ultimately change and post the song information to. Simply type in the number corresponding to your desired command from the given list.
+
 #### Run
 
 After the configuration, simply run the exectuable. Upon each run you will be prompted to select which window to take the information from. If you ever want to change your configuration, you can manually edit the ``config.json`` or delete/move it and reconfigure from scratch. Note that you can also use alternative paths to the config file via the ``--path``/``-p`` command line argument.
