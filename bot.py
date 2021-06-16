@@ -3,7 +3,6 @@ bot.py
 """
 
 import json
-from sys                            import stdout
 from config                         import ExtensionConfig, NightbotConfig
 from threading                      import Event
 from NightPy.nightpy                import NightPy
@@ -98,5 +97,5 @@ class FoobarExtensionBot():
         if o != self.cur_out:
             self.cur_out = o
             processed : str = FoobarExtensionBot.process_output_str(self.config.outtext, o)
-            print(processed, end='\x1b[1K\r')
-            #self._post_to_nightbot(processed)
+            print(f' >> {processed}')
+            self._post_to_nightbot(processed)
