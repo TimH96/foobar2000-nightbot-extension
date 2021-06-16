@@ -2,6 +2,8 @@ This is a lightweight bot script that allows Nightbot commands to post informati
 
 ### Usage
 
+TODO
+
 ### Dependencies
 
 This bot was build using Python 3.9 and uses the following external modules:
