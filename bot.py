@@ -3,6 +3,7 @@ bot.py
 """
 
 import json
+from sys                            import stdout
 from config                         import ExtensionConfig, NightbotConfig
 from threading                      import Event
 from NightPy.nightpy                import NightPy
@@ -31,6 +32,7 @@ class FoobarExtensionBot():
 
     REPLACE_TOKEN  : str = r'%win%'
     TOKEN_ENDPOINT : str = 'https://api.nightbot.tv/oauth2/token'
+    STD_INTERVAL   : int = 2
 
     def __init__(self, config: ExtensionConfig) -> None:
         self.config  : ExtensionConfig = config
@@ -95,4 +97,6 @@ class FoobarExtensionBot():
             raise WindowTerminatedError
         if o != self.cur_out:
             self.cur_out = o
-            self._post_to_nightbot(FoobarExtensionBot.process_output_str(self.config.outtext, o))
+            processed : str = FoobarExtensionBot.process_output_str(self.config.outtext, o)
+            print(processed, end='\x1b[1K\r')
+            #self._post_to_nightbot(processed)

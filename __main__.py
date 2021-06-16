@@ -27,7 +27,7 @@ def _build_config() -> dict:
     """Script to build config dict from user inputs"""
     d : dict = {}
     d['api'] = {}
-    d['interval'] = 3
+    d['interval'] = FoobarExtensionBot.STD_INTERVAL
     d['api']['cmd_id'] = 'dummy'
     d['api']['client_id'] = input('client_id: ')
     d['api']['client_secret'] = input('client_secret: ')
