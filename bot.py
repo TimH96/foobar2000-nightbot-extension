@@ -12,7 +12,7 @@ from pywinauto.controls.uiawrapper  import UIAWrapper
 
 
 class InvalidTokenError(Exception):
-    """Errrir thrown when Nightbot access token request fails"""
+    """Error thrown when Nightbot access token request fails"""
     pass
 
 
