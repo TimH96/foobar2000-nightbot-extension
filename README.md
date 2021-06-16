@@ -2,7 +2,11 @@ This is a lightweight bot script that allows Nightbot commands to post informati
 
 ### Usage
 
-TODO
+#### Install
+
+#### Config
+
+#### Run
 
 ### Dependencies
 
