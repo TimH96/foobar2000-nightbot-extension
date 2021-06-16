@@ -19,7 +19,7 @@ Or you can simply download and run the latest executable from the [releases page
 
 The bot will need to be configured upon first execution with the following information:
 
-+ ``client_id`` and ``client_secret`` are required to interact with the Nightbot API. TODO
++ ``client_id`` and ``client_secret`` are required to interact with the Nightbot API. You will need to make an application on [this page](https://nightbot.tv/account/applications) (name it ``FoobarExtension`` or something along those lines, you can leave the redirect URI field empty) and get your client ID and secret from there.
 + ``output_text`` is the text that shows when using the command. Use ``%win%`` as a substitute for the actual information in the window title, for example ``Currently playing: %win%``. There will be an error if you don't use the ``%win%`` token in your output text.
 + ``cmd_id`` is which command to ultimately change and post the song information to. Simply type in the number corresponding to your desired command from the given list.
 
