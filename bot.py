@@ -32,7 +32,7 @@ class FoobarExtensionBot():
     REPLACE_TOKEN  : str = r'%win%'
     TOKEN_ENDPOINT : str = 'https://api.nightbot.tv/oauth2/token'
     STATIC_DEFAULT : str = 'foobar2000 extension is not running'
-    STD_INTERVAL   : int = 5
+    STD_INTERVAL   : int = 3
 
     def __init__(self, config: ExtensionConfig) -> None:
         self.config  : ExtensionConfig = config
