@@ -4,6 +4,17 @@ This is a lightweight bot script that allows Nightbot commands to post informati
 
 #### Install
 
+To install, you can either clone the repo and install the listed dependencies:
+
+```bash
+$ git clone https://github.com/TimH96/foobar2000-nightbot-extension
+$ pip install requests
+$ pip install NightPy
+$ pip install pywinauto
+```
+
+Or you can simply download and run the latest executable from the [releases page](https://github.com/TimH96/foobar2000-nightbot-extension/releases).
+
 #### Config
 
 #### Run
