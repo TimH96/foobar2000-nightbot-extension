@@ -1,4 +1,5 @@
 .vscode/
 __pycache__/
 config.json
+venv
 foobar2000-nightbot-extension.exe
