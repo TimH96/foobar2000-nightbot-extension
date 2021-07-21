@@ -44,8 +44,7 @@ class FoobarExtensionBot():
         # create nightbot api
         self._construct_api(self.config.api)
 
-    @classmethod
-    def process_output_str(cls, base: str, rep: str) -> str:
+    def process_output_str(base: str, rep: str) -> str:
         """Replaces token in base with rep"""
         return base.replace(FoobarExtensionBot.REPLACE_TOKEN, rep)
 
